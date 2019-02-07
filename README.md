@@ -1,7 +1,7 @@
 # crimjustsimpy
 Tools for criminal justice simulation.
 
-##Introduction
+## Introduction
 This module contains a few classes that can help with simulating
 certain elements of the criminal justice system in the United States.
 
