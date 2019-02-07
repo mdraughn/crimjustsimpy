@@ -1,7 +1,7 @@
 import collections.abc as abc
 import typing as typ
 
-from crimjustsim import Case
+from crimjustsimpy import Case
 
 
 class Docket:
@@ -12,7 +12,7 @@ class Docket:
         self.cases = []
         self.id = None
 
-    def fill(self, id:int, num_cases:int, case_factory:typ.Iterator[Case]):
+    def fill(self, num_cases:int, case_factory:typ.Iterator[Case]):
         assert isinstance(case_factory, abc.Iterable)
         for i in range(num_cases):
             case = next(case_factory)

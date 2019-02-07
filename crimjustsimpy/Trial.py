@@ -2,7 +2,7 @@ import scipy.stats
 
 from abc import ABCMeta, abstractmethod
 
-from crimjustsim import Case
+from crimjustsimpy import Case
 
 
 class Trial:

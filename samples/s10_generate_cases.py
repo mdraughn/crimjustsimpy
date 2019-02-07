@@ -1,7 +1,7 @@
 from typing import List, Any
 
-import crimjustsim as cj
-from crimjustsim import Visualization
+import crimjustsimpy as cj
+from crimjustsimpy import Visualization
 
 max_cases = 100000
 

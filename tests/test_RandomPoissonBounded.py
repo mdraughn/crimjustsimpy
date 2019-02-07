@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsim import RandomPoissonBounded
+from crimjustsimpy import RandomPoissonBounded
 
 
 class TestRandomPoissonBounded(TestCase):

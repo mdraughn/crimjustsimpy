@@ -1,5 +1,5 @@
-import crimjustsim as cj
-from crimjustsim import Visualization
+import crimjustsimpy as cj
+from crimjustsimpy import Visualization
 
 # Setup parameters for the experiment.
 
@@ -32,7 +32,7 @@ experiment = cj.Experiment(docket_factory=docket_factory, trial=trial, plea_barg
 # Run it.
 data = experiment.run(ITERATIONS)
 print("Simulation ran for {0} seconds.".format(data.run_time))
-df = data.toDataFrame()
+df = data.casesToDataFrame()
 
 # Plot docket sizes histogram.
 Visualization.plot_docket_sizes_hist(df)

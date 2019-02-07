@@ -1,8 +1,4 @@
-import collections.abc as abc
-import typing as typ
 import pandas as pd
-import crimjustsim as cj
-from crimjustsim import Docket
 
 
 class ExperimentData:
@@ -10,7 +6,7 @@ class ExperimentData:
         self.run_time = 0.0
         self.dockets = []
 
-    def toDataFrame(self):
+    def casesToDataFrame(self):
         frame = pd.DataFrame({
             'id': [c.id for c in self.cases],
             'docketId': [c.docket.id for c in self.cases],

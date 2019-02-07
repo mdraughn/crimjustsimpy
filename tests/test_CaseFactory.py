@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsim import Case,CaseFactory
+from crimjustsimpy import Case,CaseFactory
 
 
 class TestCaseFactory(TestCase):

@@ -1,4 +1,4 @@
-from crimjustsim import Visualization, RandomNormalBounded
+from crimjustsimpy import Visualization, RandomNormalBounded
 
 num_points = 10000
 p = RandomNormalBounded(lower=-10,upper=10)

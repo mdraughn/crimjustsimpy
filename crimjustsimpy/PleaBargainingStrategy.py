@@ -1,5 +1,5 @@
 from abc import abstractmethod
-from crimjustsim import Docket
+from crimjustsimpy import Docket
 
 
 class PleaBargainingStrategy:

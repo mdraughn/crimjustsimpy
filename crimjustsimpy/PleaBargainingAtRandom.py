@@ -1,5 +1,5 @@
 import scipy.stats
-from crimjustsim import Case, Docket, PleaBargainingStrategy
+from crimjustsimpy import Case, Docket, PleaBargainingStrategy
 
 
 class PleaBargainingAtRandom(PleaBargainingStrategy):

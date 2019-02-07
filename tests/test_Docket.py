@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsim import Case,Docket
+from crimjustsimpy import Case,Docket
 
 
 class TestClassDocket(TestCase):

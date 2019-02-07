@@ -1,7 +1,7 @@
 import collections.abc as abc
 import typing as typ
 
-import crimjustsim as cj
+import crimjustsimpy as cj
 
 
 class CaseFactory():

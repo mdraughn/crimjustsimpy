@@ -1,7 +1,7 @@
 import collections.abc as abc
 import typing as typ
-import crimjustsim as cj
-from crimjustsim import Case
+import crimjustsimpy as cj
+from crimjustsimpy import Case
 
 
 class DocketFactory:
@@ -26,7 +26,7 @@ class DocketFactory:
         num_cases = next(self.arrival_gen)
 
         # Create the cases as configured.
-        docket.fill(next(self.id_gen), num_cases, self.case_factory)
+        docket.fill(num_cases, self.case_factory)
         return docket
 
 

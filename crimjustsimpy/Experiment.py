@@ -1,8 +1,7 @@
-import collections.abc as abc
 import timeit
 import typing as typ
 
-from crimjustsim import Trial, PleaBargainingStrategy, ExperimentData, Docket
+from crimjustsimpy import Trial, PleaBargainingStrategy, ExperimentData, Docket
 
 
 class Experiment:
