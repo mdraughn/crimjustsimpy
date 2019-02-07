@@ -1,0 +1,47 @@
+This is how to build a distribution by hand.
+There should be a way to automate this.
+
+- Edit setup.py and set the version.
+- Then execute
+
+    python setup.py sdist
+
+- Then upload to the test repo with (change the version to match):
+
+    twine upload --repository-url https://test.pypi.org/legacy/ dist/crimjustsimpy-1.0.4.dev1.tar.gz
+
+- See the releases here:
+
+    https://test.pypi.org/manage/project/crimjustsimpy/releases/
+
+- Then start a new instance of the IDE and create the 'installtest' virtual environment.
+    Put it in: C:\tools\Anaconda3\envs\installtest
+    Don't check: Inherit global site-packages. We want it as empty as possible to check dependents.
+
+- Install the package (set the version explicitly to make sure it doesn't pick up an old version):
+
+    pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple crimjustsimpy==1.0.5
+
+-- Run test code right in the console (you may have to restart it).
+
+-- Now upload to the real repo (set the version):
+
+    twine upload dist/crimjustsimpy-1.0.5.tar.gz
+
+- See the releases here:
+
+    https://pypi.org/manage/project/crimjustsimpy/releases/
+
+- Then start a new instance of the IDE and create the 'installtest' virtual environment.
+    Put it in: C:\tools\Anaconda3\envs\installtest
+    Don't check: Inherit global site-packages. We want it as empty as possible to check dependents.
+
+- Install the package (set the version explicitly to make sure it doesn't pick up an old version):
+
+    pip install crimjustsimpy==1.0.5
+
+-- Run test code right in the console (you may have to restart it).
+
+Sources:
+    https://packaging.python.org/guides/distributing-packages-using-setuptools/#packages
+    https://packaging.python.org/guides/using-testpypi/#using-test-pypi

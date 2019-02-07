@@ -8,7 +8,7 @@ with open(path.join(here, 'README.md'), 'r', encoding='utf-8') as fh:
 
 setup(
     name='crimjustsimpy',
-    version='1.0.4.dev1',
+    version='1.0.5',
     description='Tools for criminal just simulation',
     long_description = long_description,
     long_description_content_type = "text/markdown",
