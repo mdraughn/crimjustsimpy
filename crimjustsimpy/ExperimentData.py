@@ -1,26 +1,6 @@
-import pandas as pd
-
-
 class ExperimentData:
     def __init__(self):
-        self.run_time = 0.0
         self.dockets = []
-
-    def casesToDataFrame(self):
-        frame = pd.DataFrame({
-            'id': [c.id for c in self.cases],
-            'docketId': [c.docket.id for c in self.cases],
-            'pConvict': [c.prob_convict for c in self.cases],
-            'maxSentence': [c.sentence_if_convicted for c in self.cases],
-            'plead': [c.plead for c in self.cases],
-            'tried': [c.tried for c in self.cases],
-            'acquitted': [c.acquitted for c in self.cases],
-            'convicted': [c.convicted for c in self.cases],
-            'guilty': [c.guilty for c in self.cases],
-            'sentence': [c.sentence for c in self.cases],
-        },index=[[c.docket.id for c in self.cases],[c.id for c in self.cases]])
-        frame.index.names = ['docket', 'case']
-        return frame
 
     @property
     def cases(self):
