@@ -30,9 +30,9 @@ trial = cj.Trial()
 experiment = cj.Experiment(docket_factory=docket_factory, trial=trial, plea_bargaining=plea_bargaining)
 
 # Run it.
-data = experiment.run(ITERATIONS)
-print("Simulation ran for {0} seconds.".format(data.run_time))
-df = data.casesToDataFrame()
+experiment.run(ITERATIONS)
+print("Simulation ran for {0} seconds.".format(experiment.run_time))
+df = experiment.to_cases_data_frame()
 
 # Plot docket sizes histogram.
 Visualization.plot_docket_sizes_hist(df)
