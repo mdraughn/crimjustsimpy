@@ -3,7 +3,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from pandas import DataFrame
 
-from crimjustsimpy import ExperimentData
+from crimjustsimpy import SimData
 
 
 #########################################################################################
@@ -51,33 +51,33 @@ def plot_sentences_hist(df:DataFrame):
 #########################################################################################
 
 # Plot docket sizes histogram.
-def view_dockets(data:ExperimentData):
+def view_dockets(data:SimData):
     plot_hist(data.dockets, getter=lambda d:len(d.cases), title="Docket Sizes", bins="ints")
 
 # Plot case probability of conviction histogram.
-def view_prob_guilt(data:ExperimentData):
+def view_prob_guilt(data:SimData):
     plot_hist(data.cases, getter=lambda c:c.prob_convict, title="p(convict)")
 
 # Pie chart of pleas vs trials.
-def view_pleas_vs_trials(data:ExperimentData):
+def view_pleas_vs_trials(data:SimData):
     num_plead = len(data.cases_plead)
     num_tried = len(data.cases_tried)
     plot_pie(['Plead', 'Tried'],[num_plead, num_tried],colors=['y','c'],title='Plea vs Trial')
 
 # Pie chart of trial results.
-def view_trial_results(data:ExperimentData):
+def view_trial_results(data:SimData):
     num_acquitted = len(data.cases_acquitted)
     num_convicted = len(data.cases_convicted)
     plot_pie(['Acquitted', 'Convicted'],[num_acquitted, num_convicted], colors=['g','r'],title='Trial Result')
 
 # Pie chart of guilty/not guilty.
-def view_guilt_summary(data:ExperimentData):
+def view_guilt_summary(data:SimData):
     num_guilty = len(data.cases_guilty)
     num_not_guilty = len(data.cases_not_guilty)
     plot_pie(['Not Guilty', 'Guilty'],[num_not_guilty, num_guilty], colors=['g','m'], title='Guilty vs Not Guilty')
 
 # Pie chart of case results.
-def view_case_results(data:ExperimentData):
+def view_case_results(data:SimData):
     num_acquitted = len(data.cases_acquitted)
     num_plead = len(data.cases_plead)
     num_convicted = len(data.cases_convicted)
@@ -85,7 +85,7 @@ def view_case_results(data:ExperimentData):
              colors = ['g', 'y', 'r'], title='Case Results')
 
 # Plot sentencing results histogram.
-def view_sentences(data:ExperimentData):
+def view_sentences(data:SimData):
     plot_hist(data.sentences, title="Sentences")
 
 # Some helper functions.

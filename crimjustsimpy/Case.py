@@ -13,9 +13,13 @@ class Case:
         self.sentence_if_convicted = 60.0
 
         # State of progress through the system.
+        self.time_entered = None
         self.plead:bool = False
+        self.time_plead = None
         self.tried:bool = False
         self.acquitted:bool = False
         self.convicted:bool = False
         self.guilty:bool = False
+        self.time_tried = None
         self.sentence:int = None
+        self.time_released = None

@@ -1,4 +1,4 @@
-class ExperimentData:
+class SimData:
     def __init__(self):
         self.dockets = []
 

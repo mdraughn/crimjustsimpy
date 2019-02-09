@@ -2,7 +2,7 @@ import timeit
 import typing as typ
 import pandas as pd
 
-from crimjustsimpy import Trial, PleaBargainingStrategy, ExperimentData, Docket
+from crimjustsimpy import Trial, PleaBargainingStrategy, SimData, Docket
 
 
 class Experiment:
@@ -16,7 +16,7 @@ class Experiment:
         self.plea_bargaining = plea_bargaining
 
         # Data for the engine.
-        self._data = ExperimentData()
+        self._data = SimData()
 
         self._run_time = 0.0
 
