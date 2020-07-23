@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsimpy import RandomScaledBetaProb
+from crimjustsimpy.random import RandomScaledBetaProb
 
 
 class TestRandomScaledBetaProb(TestCase):

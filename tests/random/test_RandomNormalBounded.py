@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsimpy import RandomNormalBounded
+from crimjustsimpy.random import RandomNormalBounded
 
 
 class TestRandomNormalBounded(TestCase):
