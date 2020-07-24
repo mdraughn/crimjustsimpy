@@ -2,6 +2,7 @@ import crimjustsimpy as cj
 from crimjustsimpy import Visualization
 
 # Setup parameters for the experiment.
+from crimjustsimpy.random import RandomScaledBetaProb, RandomPoissonBounded
 
 AVG_CASES_PER_INTERVAL = 100
 MAX_CASES_PER_INTERVAL = 300
@@ -12,12 +13,12 @@ PROB_PLEA=0.8
 ITERATIONS = 240
 
 # Configure the case factory.
-convict_gen = cj.RandomScaledBetaProb(shape=10.0,
+convict_gen = RandomScaledBetaProb(shape=10.0,
     lower=MIN_PROB_CONVICT,middle=MEAN_PROB_CONVICT,upper=MAX_PROB_CONVICT)
 case_factory = cj.CaseFactory(convict_gen=convict_gen)
 
 # Configure the docket factory.
-arrival_gen = cj.RandomPoissonBounded(mean=AVG_CASES_PER_INTERVAL, upper=MAX_CASES_PER_INTERVAL)
+arrival_gen = RandomPoissonBounded(mean=AVG_CASES_PER_INTERVAL, upper=MAX_CASES_PER_INTERVAL)
 docket_factory = cj.DocketFactory(case_factory=case_factory, arrival_gen=arrival_gen)
 
 # Configure the plea bargaining logic.

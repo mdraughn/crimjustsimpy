@@ -1,4 +1,5 @@
-from crimjustsimpy import Visualization, RandomScaledBetaProb
+from crimjustsimpy import Visualization
+from crimjustsimpy.random import RandomScaledBetaProb
 
 num_points = 10000
 p = RandomScaledBetaProb()

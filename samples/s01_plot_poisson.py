@@ -1,4 +1,5 @@
-from crimjustsimpy import Visualization, RandomPoissonBounded
+from crimjustsimpy import Visualization
+from crimjustsimpy.random import RandomPoissonBounded
 
 num_points = 10000
 p = RandomPoissonBounded(loc=1,mean=4)
