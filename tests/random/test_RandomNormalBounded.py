@@ -55,7 +55,8 @@ class TestRandomNormalBounded(TestCase):
         """
         Generate an error if too few numbers would be in range.
         """
-        self.assertRaises(ValueError, lambda: RandomNormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0))
+        with self.assertRaises(ValueError):
+            next(RandomNormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0))
 
     def test_missed_range_snap(self):
         """

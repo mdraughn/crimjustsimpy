@@ -2,39 +2,37 @@ import random
 import scipy.stats
 
 
-class RandomNormalBounded():
-    """
-    Generates numbers from a normal distribution with range limits.
-    """
-
-    def __init__(self, mean: float = 0.0, std: float = 1.0, *, lower: float = 0.0, upper: float = 1.0, snap_limit: bool = False,
+def RandomNormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0.0, upper: float = 1.0, snap_limit: bool = False,
                  sanity: float = 0.01):
+    """Generates numbers from a normal distribution with range limits.
 
-        assert lower <= upper
+    :param mean: Mean of the normal curve.
+    :param std:  Standard deviation of the normal curve.
+    :param lower: Lower bound of value to generate.
+    :param upper: Upper bound of values to generate.
+    :param snap_limit: If True, snap out-of-bound values to the nearest limit.
+    :param sanity: Reject parameters if less than this fraction of numbers would be accepted.
+    :return:
+    """
 
-        self.mean = mean
-        self.std = std
-        self.snap_limit = snap_limit
-        self.lower = lower
-        self.upper = upper
-        self.sanity_limit = sanity
+    """
+    """
+    # Range check.
+    assert lower <= upper
 
-        if not snap_limit:
-            # Check that this won't discard too many generated values.
-            dist = scipy.stats.norm(mean, std)
-            if dist.cdf(self.upper) - dist.cdf(self.lower) < self.sanity_limit:
-                raise ValueError("Normal curve overlaps acceptable range ({1},{2}) by less than {0}"
-                                 .format(self.sanity_limit, self.lower, self.upper))
+    # Check that this won't discard too many generated values.
+    if not snap_limit:
+        dist = scipy.stats.norm(mean, std)
+        if dist.cdf(upper) - dist.cdf(lower) < sanity:
+            raise ValueError("Normal curve overlaps acceptable range ({1},{2}) by less than {0}"
+                             .format(sanity, lower, upper))
 
-    def __iter__(self):
-        return self
-
-    def __next__(self) -> float:
-        p = self.lower - 1
-        while not (self.lower <= p <= self.upper):
-            p = random.normalvariate(self.mean, self.std)
+    while True:
+        p = lower - 1
+        while not (lower <= p <= upper):
+            p = random.normalvariate(mean, std)
 
             # Snap out-of-bounds values in bounds.
-            if self.snap_limit:
-                p = min(max(p, self.lower), self.upper)
-        return p
+            if snap_limit:
+                p = min(max(p, lower), upper)
+        yield p
