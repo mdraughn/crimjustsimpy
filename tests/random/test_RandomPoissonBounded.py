@@ -30,4 +30,5 @@ class TestRandomPoissonBounded(TestCase):
         """
         Generate an error if too few numbers would be in range.
         """
-        self.assertRaises(AssertionError, lambda: RandomPoissonBounded(mean=10.0, lower=0.0, upper=1.0))
+        with self.assertRaises(AssertionError):
+            RandomPoissonBounded(mean=10.0, lower=0.0, upper=1.0)

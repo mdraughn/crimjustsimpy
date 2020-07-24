@@ -2,38 +2,40 @@ import scipy.stats
 from scipy.stats import poisson
 
 
-class RandomPoissonBounded():
-    """
-    Generates numbers from a Poisson distribution with range limits.
-    """
-
-    def __init__(self, *, mean: float = 1, loc: int = 0, lower: float = 0, upper: float = 1000,
+def RandomPoissonBounded(*, mean: float = 1, loc: int = 0, lower: float = 0, upper: float = 1000,
                  sanity: float = 0.01):
+    """Generates numbers from a Poisson distribution with range limits.
 
-        assert lower <= mean <= upper
+    :param mean: Mean of the poisson curve.
+    :param loc: Offset location of the poisson curve.
+    :param lower: Lower bound of value to generate.
+    :param upper: Upper bound of values to generate.
+    :param sanity: Reject parameters if less than this fraction of numbers would be accepted.
+    :return:
+    """
 
-        self.mean = mean
-        self.loc = loc
-        self.lower = lower
-        self.upper = upper
-        self.sanity_limit = sanity
+    # Range check.
+    assert lower <= mean <= upper
 
-        self.mu = self.mean - self.loc
+    # Calculate the required mu parameter.
+    mu = mean - loc
 
-        # Check that this won't discard too many generated values.
-        dist = scipy.stats.poisson(self.mu)
-        if dist.cdf(self.upper) - dist.cdf(self.lower) < self.sanity_limit:
-            raise ValueError("Poisson curve overlaps acceptable range ({1},{2}) by less than {0}"
-                             .format(self.sanity_limit, self.lower, self.upper))
+    # Check that this won't discard too many generated values.
+    dist = scipy.stats.poisson(mu)
+    if dist.cdf(upper) - dist.cdf(lower) < sanity:
+        raise ValueError("Poisson curve overlaps acceptable range ({1},{2}) by less than {0}"
+                         .format(sanity, lower, upper))
 
-    def __iter__(self):
-        return self
+    # Helper to do a random draw.
+    def raw_draw() -> int:
+        return poisson.rvs(mu, loc=loc)
 
-    def __next__(self) -> int:
-        n = self.raw_draw()
-        while not (self.lower <= n <= self.upper):
-            n = self.raw_draw()
-        return n
+    # Return the generator.
+    def gen():
+        while True:
+            n = raw_draw()
+            while not (lower <= n <= upper):
+                n = raw_draw()
+            yield n
 
-    def raw_draw(self) -> int:
-        return poisson.rvs(self.mu, loc=self.loc)
+    return gen()

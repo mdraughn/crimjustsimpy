@@ -27,12 +27,15 @@ def RandomNormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0
             raise ValueError("Normal curve overlaps acceptable range ({1},{2}) by less than {0}"
                              .format(sanity, lower, upper))
 
-    while True:
-        p = lower - 1
-        while not (lower <= p <= upper):
-            p = random.normalvariate(mean, std)
+    def gen():
+        while True:
+            p = lower - 1
+            while not (lower <= p <= upper):
+                p = random.normalvariate(mean, std)
 
-            # Snap out-of-bounds values in bounds.
-            if snap_limit:
-                p = min(max(p, lower), upper)
-        yield p
+                # Snap out-of-bounds values in bounds.
+                if snap_limit:
+                    p = min(max(p, lower), upper)
+            yield p
+
+    return gen()
