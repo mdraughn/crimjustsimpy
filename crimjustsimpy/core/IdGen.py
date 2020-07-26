@@ -1,5 +1,5 @@
-def IdGen():
+def IdGen() -> int:
     i = 0
     while True:
-        yield i
         i = i + 1
+        yield i
