@@ -1,14 +1,14 @@
 import collections.abc as abc
 import typing as typ
 import crimjustsimpy as cj
-from crimjustsimpy import Case
+from crimjustsimpy.old import Case
 
 
 class DocketFactory:
     """
     Factory to create dockets of cases based on the specified configuration items.
     """
-    def __init__(self,*,case_factory:typ.Iterator[Case],arrival_gen:typ.Iterator[int]):
+    def __init__(self, *, case_factory:typ.Iterator[Case], arrival_gen:typ.Iterator[int]):
         assert isinstance(case_factory,abc.Iterator)
         assert isinstance(arrival_gen,abc.Iterator)
         self.case_factory = case_factory

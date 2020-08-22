@@ -1,11 +1,11 @@
 from abc import abstractmethod
-from crimjustsimpy import Docket
+from crimjustsimpy.old import Docket
 
 
 class PleaBargainingStrategy:
 
     @abstractmethod
-    def bargain(self, docket:Docket):
+    def bargain(self, docket: Docket):
         """
         Compute plea bargaining for the entire docket.
         :param docket:

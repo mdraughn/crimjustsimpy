@@ -24,12 +24,12 @@ def RandomScaledBetaProb(*, lower: float = 0.0, upper: float = 1.0, shape: float
     alpha = shape
     beta = shape * (1 - mu) / mu
 
-    def gen():
+    def rand():
         while True:
             # Get a random draw from the Beta distribution.
             p = random.betavariate(alpha, beta)
 
             # Scale it to the requested range.
-            yield p * width + lower
+            return p * width + lower
 
-    return gen()
+    return rand

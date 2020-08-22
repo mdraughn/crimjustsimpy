@@ -2,13 +2,13 @@ import timeit
 import typing as typ
 import pandas as pd
 
-from crimjustsimpy import Trial, PleaBargainingStrategy, SimData, Docket
+from crimjustsimpy.old import Docket, SimData, PleaBargainingStrategy, Trial
 
 
 class Experiment:
 
-    def __init__(self, *, docket_factory:typ.Iterator[Docket], trial:Trial,
-                 plea_bargaining:PleaBargainingStrategy):
+    def __init__(self, *, docket_factory:typ.Iterator[Docket], trial: Trial,
+                 plea_bargaining: PleaBargainingStrategy):
 
         # Store engine components.
         self.docket_factory = docket_factory

@@ -31,11 +31,11 @@ def RandomPoissonBounded(*, mean: float = 1, loc: int = 0, lower: float = 0, upp
         return poisson.rvs(mu, loc=loc)
 
     # Return the generator.
-    def gen():
+    def rand():
         while True:
             n = raw_draw()
             while not (lower <= n <= upper):
                 n = raw_draw()
-            yield n
+            return n
 
-    return gen()
+    return rand

@@ -1,5 +1,5 @@
 import scipy.stats
-from crimjustsimpy import Case, Docket, PleaBargainingStrategy
+from crimjustsimpy.old import Case, Docket, PleaBargainingStrategy
 
 
 class PleaBargainingAtRandom(PleaBargainingStrategy):
@@ -10,7 +10,7 @@ class PleaBargainingAtRandom(PleaBargainingStrategy):
     def __init__(self,*,prob_plea:float):
         self.prob_plea = prob_plea
 
-    def _handle_case(self, case:Case):
+    def _handle_case(self, case: Case):
         """
         Handle a single case.
         :param case:
@@ -31,13 +31,13 @@ class PleaBargainingAtRandom(PleaBargainingStrategy):
             # The statistically expected sentence.
             case.sentence = case.prob_convict * case.sentence_if_convicted
 
-    def bargain(self, docket:Docket):
+    def bargain(self, docket: Docket):
         """
         Calculate plea bargains.
         :param docket:
         :return:
         """
-        assert isinstance(docket,Docket)
+        assert isinstance(docket, Docket)
 
         # For this dumb strategy, handle the cases independently.
         for case in docket.cases:

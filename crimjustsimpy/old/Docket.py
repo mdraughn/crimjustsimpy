@@ -1,7 +1,7 @@
 import collections.abc as abc
 import typing as typ
 
-from crimjustsimpy import Case
+from crimjustsimpy.old import Case
 
 
 class Docket:

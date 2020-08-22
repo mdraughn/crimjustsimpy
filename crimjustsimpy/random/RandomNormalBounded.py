@@ -1,10 +1,15 @@
 import random
 import scipy.stats
 
+import math
+def make_cylinder_volume_func(r):
+    def volume(h):
+        return math.pi * r * r * h
+    return volume
 
 def RandomNormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0.0, upper: float = 1.0, snap_limit: bool = False,
                  sanity: float = 0.01):
-    """Generates numbers from a normal distribution with range limits.
+    """Returns a callable that produces random numbers from a normal distribution with range limits.
 
     :param mean: Mean of the normal curve.
     :param std:  Standard deviation of the normal curve.
@@ -12,11 +17,9 @@ def RandomNormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0
     :param upper: Upper bound of values to generate.
     :param snap_limit: If True, snap out-of-bound values to the nearest limit.
     :param sanity: Reject parameters if less than this fraction of numbers would be accepted.
-    :return:
+    :return: A callable that returns a random float.
     """
 
-    """
-    """
     # Range check.
     assert lower <= upper
 
@@ -27,15 +30,15 @@ def RandomNormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0
             raise ValueError("Normal curve overlaps acceptable range ({1},{2}) by less than {0}"
                              .format(sanity, lower, upper))
 
-    def gen():
-        while True:
-            p = lower - 1
-            while not (lower <= p <= upper):
-                p = random.normalvariate(mean, std)
+    def rand():
+        # Initialize it out of range.
+        p = lower - 1
+        while not (lower <= p <= upper):
+            p = random.normalvariate(mean, std)
 
-                # Snap out-of-bounds values in bounds.
-                if snap_limit:
-                    p = min(max(p, lower), upper)
-            yield p
+            # Snap out-of-bounds values in bounds.
+            if snap_limit:
+                p = min(max(p, lower), upper)
+        return p
 
-    return gen()
+    return rand

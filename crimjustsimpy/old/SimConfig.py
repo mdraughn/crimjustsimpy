@@ -1,17 +1,14 @@
-import timeit
 import typing as typ
-import pandas as pd
-import simpy
 
-from crimjustsimpy import Trial, PleaBargainingStrategy, SimData, Docket
+from crimjustsimpy.old import Docket, PleaBargainingStrategy, Trial
 
 
 class SimConfig:
 
     def __init__(self, *,
                  docket_factory:typ.Iterator[Docket],
-                 trial:Trial,
-                 plea_bargaining:PleaBargainingStrategy,
+                 trial: Trial,
+                 plea_bargaining: PleaBargainingStrategy,
                  docket_interval:int = 1,
                  plea_wait:int = 0,
                  trial_wait:int = 0,

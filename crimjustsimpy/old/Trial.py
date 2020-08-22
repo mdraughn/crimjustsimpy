@@ -1,13 +1,11 @@
 import scipy.stats
 
-from abc import ABCMeta, abstractmethod
-
-from crimjustsimpy import Case
+from crimjustsimpy.old import Case
 
 
 class Trial:
 
-    def try_case(self, case:Case):
+    def try_case(self, case: Case):
         assert not case.plead
         assert not case.tried
         assert not case.acquitted

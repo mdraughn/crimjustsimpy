@@ -1,14 +1,13 @@
 import timeit
-import typing as typ
 import pandas as pd
 import simpy
 
-from crimjustsimpy import Trial, PleaBargainingStrategy, SimData, Docket, SimConfig
+from crimjustsimpy.old import SimData, SimConfig
 
 
 class SimEngine:
 
-    def __init__(self, config:SimConfig, *, data:SimData = None):
+    def __init__(self, config: SimConfig, *, data: SimData = None):
 
         # Store engine components.
         self.config = config

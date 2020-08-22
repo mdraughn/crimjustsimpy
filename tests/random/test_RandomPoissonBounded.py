@@ -14,16 +14,16 @@ class TestRandomPoissonBounded(TestCase):
         """
         Generate a bunch of numbers in the range 0.0 to 1.0
         """
-        gen = RandomPoissonBounded()
-        sample = [next(gen) for i in range(1000)]
+        rand = RandomPoissonBounded()
+        sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0, 10) # Should mostly fit. Mostly.
 
     def test_generate_range(self):
         """
         Generate a bunch of numbers in the range 0.0 to 1.0
         """
-        gen = RandomPoissonBounded(loc=5,mean=10)
-        sample = [next(gen) for i in range(1000)]
+        rand = RandomPoissonBounded(loc=5,mean=10)
+        sample = [rand() for i in range(1000)]
         self.verify_range(sample, 5, 30) # Should mostly fit. Mostly.
 
     def test_missed_range(self):

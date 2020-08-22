@@ -14,8 +14,8 @@ class TestRandomNormalBounded(TestCase):
         """
         Generate a bunch of numbers in the range 0.0 to 1.0
         """
-        gen = RandomNormalBounded()
-        sample = [next(gen) for i in range(1000)]
+        rand = RandomNormalBounded()
+        sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0.0, 1.0)
 
     def test_generate_snap(self):
@@ -23,8 +23,8 @@ class TestRandomNormalBounded(TestCase):
         Generate a bunch of numbers in the range 0.0 to 1.0
         Snap out-of-range to range ends.
         """
-        gen = RandomNormalBounded(snap_limit=True)
-        sample = [next(gen) for i in range(1000)]
+        rand = RandomNormalBounded(snap_limit=True)
+        sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0.0, 1.0)
         zeroes = [1 for s in sample if s == 0.0]
         ones = [1 for s in sample if s == 1.0]
@@ -35,16 +35,16 @@ class TestRandomNormalBounded(TestCase):
         """
         Generate a bunch of numbers in the range -1.0 to 0.0
         """
-        gen = RandomNormalBounded(lower=-1.0, upper=0.0)
-        sample = [next(gen) for i in range(1000)]
+        rand = RandomNormalBounded(lower=-1.0, upper=0.0)
+        sample = [rand() for i in range(1000)]
         self.verify_range(sample,-1.0,0.0)
 
     def test_generate_negative_snap(self):
         """
         Generate a bunch of numbers in the range -1.0 to 0.0
         """
-        gen = RandomNormalBounded(lower=-1.0, upper=0.0, snap_limit=True)
-        sample = [next(gen) for i in range(1000)]
+        rand = RandomNormalBounded(lower=-1.0, upper=0.0, snap_limit=True)
+        sample = [rand() for i in range(1000)]
         self.verify_range(sample,-1.0,0.0)
         zeroes = [1 for s in sample if s == 0.0]
         ones = [1 for s in sample if s == -1.0]
@@ -62,8 +62,8 @@ class TestRandomNormalBounded(TestCase):
         """
         Snaps all numbers when way out of range.
         """
-        gen = RandomNormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0, snap_limit=True)
-        sample = [next(gen) for i in range(1000)]
+        rand = RandomNormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0, snap_limit=True)
+        sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0.0, 1.0)
         zeroes = [1 for s in sample if s == 0.0]
         ones = [1 for s in sample if s == 1.0]

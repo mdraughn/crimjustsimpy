@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsimpy import Case,CaseFactory
+from crimjustsimpy.old import CaseFactory, Case
 
 
 class TestCaseFactory(TestCase):
@@ -14,6 +14,6 @@ class TestCaseFactory(TestCase):
 
     def validate_new(self, cf, id, pc):
         case = next(cf)
-        self.assertIsInstance(case,Case)
+        self.assertIsInstance(case, Case)
         self.assertEqual(case.id, id)
         self.assertEqual(case.prob_convict, pc)
