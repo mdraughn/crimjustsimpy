@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsimpy.random import RandomPoissonBounded
+import crimjustsimpy.rangen as rg
 
 
 class TestRandomPoissonBounded(TestCase):
@@ -14,7 +14,7 @@ class TestRandomPoissonBounded(TestCase):
         """
         Generate a bunch of numbers in the range 0.0 to 1.0
         """
-        rand = RandomPoissonBounded()
+        rand = rg.PoissonBounded()
         sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0, 10) # Should mostly fit. Mostly.
 
@@ -22,7 +22,7 @@ class TestRandomPoissonBounded(TestCase):
         """
         Generate a bunch of numbers in the range 0.0 to 1.0
         """
-        rand = RandomPoissonBounded(loc=5,mean=10)
+        rand = rg.PoissonBounded(loc=5,mean=10)
         sample = [rand() for i in range(1000)]
         self.verify_range(sample, 5, 30) # Should mostly fit. Mostly.
 
@@ -31,4 +31,4 @@ class TestRandomPoissonBounded(TestCase):
         Generate an error if too few numbers would be in range.
         """
         with self.assertRaises(AssertionError):
-            RandomPoissonBounded(mean=10.0, lower=0.0, upper=1.0)
+            rg.PoissonBounded(mean=10.0, lower=0.0, upper=1.0)

@@ -1,7 +1,7 @@
 import random
 
 
-def RandomScaledBetaProb(*, lower: float = 0.0, upper: float = 1.0, shape: float = 2.0, middle: float = None):
+def ScaledBetaProb(*, lower: float = 0.0, upper: float = 1.0, shape: float = 2.0, middle: float = None):
     """Create a probability generator using a Beta distribution.
         The ratio between traditional alpha and beta parameters to the Beta distribution
         will be calculated from the mean, with their absolute magnitude described by the scale.

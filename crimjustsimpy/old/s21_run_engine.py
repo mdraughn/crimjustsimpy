@@ -2,7 +2,7 @@ import crimjustsimpy as cj
 from crimjustsimpy import Visualization
 
 # Setup parameters for the experiment.
-from crimjustsimpy.random import RandomScaledBetaProb, RandomPoissonBounded
+from crimjustsimpy.rangen import RandomScaledBetaProb, RandomPoissonBounded
 
 AVG_CASES_PER_INTERVAL = 100
 MAX_CASES_PER_INTERVAL = 300
@@ -10,7 +10,7 @@ MIN_PROB_CONVICT = 0.05
 MEAN_PROB_CONVICT = 0.4
 MAX_PROB_CONVICT = 0.95
 PROB_PLEA=0.8
-ITERATIONS = 240
+ITERATIONS = 20 * 365
 
 # Configure the case factory.
 convict_gen = RandomScaledBetaProb(shape=10.0,
@@ -28,12 +28,14 @@ plea_bargaining = cj.PleaBargainingAtRandom(prob_plea=PROB_PLEA)
 trial = cj.Trial()
 
 # Configure the experiment.
-experiment = cj.Experiment(docket_factory=docket_factory, trial=trial, plea_bargaining=plea_bargaining)
+config = cj.SimConfig(docket_factory=docket_factory, trial=trial, plea_bargaining=plea_bargaining,
+                      docket_interval= 30, plea_wait = 60, trial_wait = 90, active_period=ITERATIONS)
+engine = cj.SimEngine(config)
 
 # Run it.
-experiment.run(ITERATIONS)
-print("Simulation ran for {0} seconds.".format(experiment.run_time))
-df = experiment.to_cases_data_frame()
+engine.run()
+print("Simulation ran for {0} seconds.".format(engine.run_time))
+df = engine.to_cases_data_frame()
 
 # Plot docket sizes histogram.
 Visualization.plot_docket_sizes_hist(df)

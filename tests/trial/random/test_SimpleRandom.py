@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from crimjustsimpy.random.RandomChoice import RandomChoice
+from crimjustsimpy.rangen.RandomChoice import Choice
 from crimjustsimpy.trial.random.SimpleRandomCase import SimpleRandomCase
 from crimjustsimpy.trial.random.SimpleRandomCaseFactory import SimpleRandomCaseFactory
 from crimjustsimpy.trial.trial import ICase, ICaseFactory
@@ -25,11 +25,11 @@ class TestSimpleRandomCaseFactory(TestCase):
     def test_interface(self):
         self.assertTrue(issubclass(SimpleRandomCaseFactory,ICaseFactory),
                         "Case factory classes must implement ICaseFactory")
-        factory = SimpleRandomCaseFactory(convict_gen=RandomChoice([0.123]))
+        factory = SimpleRandomCaseFactory(convict_gen=Choice([0.123]))
         self.assertIsInstance(factory,ICaseFactory,"Case factories must implement ICaseFactory")
 
     def test_generator(self):
-        factory = SimpleRandomCaseFactory(convict_gen=RandomChoice([0.123]))
+        factory = SimpleRandomCaseFactory(convict_gen=Choice([0.123]))
         case = factory.gen_case()
         self.assertIsNotNone(case)
         self.assertIsInstance(case,SimpleRandomCase)

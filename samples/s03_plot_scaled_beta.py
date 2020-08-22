@@ -1,7 +1,7 @@
 from crimjustsimpy import Visualization
-from crimjustsimpy.random import RandomScaledBetaProb
+import crimjustsimpy.rangen as rg
 
 num_points = 10000
-p = RandomScaledBetaProb()
-data = [next(p) for i in range(num_points)]
+p = rg.ScaledBetaProb()
+data = [p() for i in range(num_points)]
 Visualization.plot_hist(data, title="Beta Distribution Sample")

@@ -2,7 +2,7 @@ import scipy.stats
 from scipy.stats import poisson
 
 
-def RandomPoissonBounded(*, mean: float = 1, loc: int = 0, lower: float = 0, upper: float = 1000,
+def PoissonBounded(*, mean: float = 1, loc: int = 0, lower: float = 0, upper: float = 1000,
                  sanity: float = 0.01):
     """Generates numbers from a Poisson distribution with range limits.
 

@@ -7,7 +7,7 @@ def make_cylinder_volume_func(r):
         return math.pi * r * r * h
     return volume
 
-def RandomNormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0.0, upper: float = 1.0, snap_limit: bool = False,
+def NormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0.0, upper: float = 1.0, snap_limit: bool = False,
                  sanity: float = 0.01):
     """Returns a callable that produces random numbers from a normal distribution with range limits.
 

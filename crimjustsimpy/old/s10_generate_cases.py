@@ -1,6 +1,6 @@
 from typing import List, Any
 import crimjustsimpy as cj
-from crimjustsimpy.random import RandomScaledBetaProb
+from crimjustsimpy.rangen import RandomScaledBetaProb
 from crimjustsimpy import Visualization
 
 max_cases = 100000

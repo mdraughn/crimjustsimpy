@@ -1,7 +1,7 @@
 import crimjustsimpy as cj
 from crimjustsimpy import Visualization
 from crimjustsimpy.old import Docket
-from crimjustsimpy.random import RandomScaledBetaProb
+from crimjustsimpy.rangen import RandomScaledBetaProb
 
 max_cases = 10000
 

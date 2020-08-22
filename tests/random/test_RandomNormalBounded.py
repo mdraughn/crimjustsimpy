@@ -1,6 +1,5 @@
 from unittest import TestCase
-
-from crimjustsimpy.random import RandomNormalBounded
+import crimjustsimpy.rangen as rg
 
 
 class TestRandomNormalBounded(TestCase):
@@ -14,7 +13,7 @@ class TestRandomNormalBounded(TestCase):
         """
         Generate a bunch of numbers in the range 0.0 to 1.0
         """
-        rand = RandomNormalBounded()
+        rand = rg.NormalBounded()
         sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0.0, 1.0)
 
@@ -23,7 +22,7 @@ class TestRandomNormalBounded(TestCase):
         Generate a bunch of numbers in the range 0.0 to 1.0
         Snap out-of-range to range ends.
         """
-        rand = RandomNormalBounded(snap_limit=True)
+        rand = rg.NormalBounded(snap_limit=True)
         sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0.0, 1.0)
         zeroes = [1 for s in sample if s == 0.0]
@@ -35,7 +34,7 @@ class TestRandomNormalBounded(TestCase):
         """
         Generate a bunch of numbers in the range -1.0 to 0.0
         """
-        rand = RandomNormalBounded(lower=-1.0, upper=0.0)
+        rand = rg.NormalBounded(lower=-1.0, upper=0.0)
         sample = [rand() for i in range(1000)]
         self.verify_range(sample,-1.0,0.0)
 
@@ -43,7 +42,7 @@ class TestRandomNormalBounded(TestCase):
         """
         Generate a bunch of numbers in the range -1.0 to 0.0
         """
-        rand = RandomNormalBounded(lower=-1.0, upper=0.0, snap_limit=True)
+        rand = rg.NormalBounded(lower=-1.0, upper=0.0, snap_limit=True)
         sample = [rand() for i in range(1000)]
         self.verify_range(sample,-1.0,0.0)
         zeroes = [1 for s in sample if s == 0.0]
@@ -56,13 +55,13 @@ class TestRandomNormalBounded(TestCase):
         Generate an error if too few numbers would be in range.
         """
         with self.assertRaises(ValueError):
-            next(RandomNormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0))
+            next(rg.NormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0))
 
     def test_missed_range_snap(self):
         """
         Snaps all numbers when way out of range.
         """
-        rand = RandomNormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0, snap_limit=True)
+        rand = rg.NormalBounded(mean=10.0, std=1.0, lower=0.0, upper=1.0, snap_limit=True)
         sample = [rand() for i in range(1000)]
         self.verify_range(sample, 0.0, 1.0)
         zeroes = [1 for s in sample if s == 0.0]
