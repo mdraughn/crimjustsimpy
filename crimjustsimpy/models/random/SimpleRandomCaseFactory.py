@@ -3,7 +3,7 @@ import typing as typ
 from typing import Iterator
 
 from . import SimpleRandomCase
-from .. import trial
+from crimjustsimpy.trial import trial
 
 
 class SimpleRandomCaseFactory(trial.CaseFactoryBase):

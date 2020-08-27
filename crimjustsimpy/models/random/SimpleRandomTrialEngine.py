@@ -1,7 +1,7 @@
 from scipy.stats import uniform
 
 from . import SimpleRandomCase
-from ..trial import Verdict, CaseOutcome
+from crimjustsimpy.trial.trial import Verdict, CaseOutcome
 
 
 class SimpleRandomTrialEngine:

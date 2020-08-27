@@ -1,8 +1,8 @@
 from unittest import TestCase
 
 from crimjustsimpy.rangen.RandomChoice import Choice
-from crimjustsimpy.trial.random.SimpleRandomCase import SimpleRandomCase
-from crimjustsimpy.trial.random.SimpleRandomCaseFactory import SimpleRandomCaseFactory
+from crimjustsimpy.models.random.SimpleRandomCase import SimpleRandomCase
+from crimjustsimpy.models.random.SimpleRandomCaseFactory import SimpleRandomCaseFactory
 from crimjustsimpy.trial.trial import ICase, ICaseFactory
 
 
