@@ -1,14 +1,12 @@
 import random
+from typing import Callable
+
 import scipy.stats
 
 import math
-def make_cylinder_volume_func(r):
-    def volume(h):
-        return math.pi * r * r * h
-    return volume
 
 def NormalBounded(mean: float = 0.0, std: float = 1.0, *, lower: float = 0.0, upper: float = 1.0, snap_limit: bool = False,
-                 sanity: float = 0.01):
+                 sanity: float = 0.01) -> Callable[[],float]:
     """Returns a callable that produces random numbers from a normal distribution with range limits.
 
     :param mean: Mean of the normal curve.

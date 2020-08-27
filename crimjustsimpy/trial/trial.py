@@ -2,9 +2,9 @@ import abc
 from typing import Callable
 from enum import Enum
 
-from ..core import IdGen
+from ..core import IdGenerator
 
-__trial_id_generator = IdGen()
+__trial_id_generator = IdGenerator()
 
 def gen_id() -> int:
     return next(__trial_id_generator)

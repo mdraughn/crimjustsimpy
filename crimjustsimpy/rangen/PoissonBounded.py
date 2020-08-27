@@ -1,9 +1,11 @@
+from typing import Callable
+
 import scipy.stats
 from scipy.stats import poisson
 
 
 def PoissonBounded(*, mean: float = 1, loc: int = 0, lower: float = 0, upper: float = 1000,
-                 sanity: float = 0.01):
+                 sanity: float = 0.01) -> Callable[[],float]:
     """Generates numbers from a Poisson distribution with range limits.
 
     :param mean: Mean of the poisson curve.

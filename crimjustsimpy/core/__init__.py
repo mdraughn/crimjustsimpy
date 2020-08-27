@@ -1,1 +1,1 @@
-from .IdGen import IdGen
+from .IdGenerator import IdGenerator
