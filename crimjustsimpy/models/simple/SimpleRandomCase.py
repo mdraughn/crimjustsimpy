@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from crimjustsimpy.trial.trial import CaseBase
+from ...trial import CaseBase
 
 
 class SimpleRandomCase(CaseBase):

@@ -1,6 +1,5 @@
 import abc
-from typing import Callable
-from enum import Enum
+
 
 class ICase(metaclass=abc.ABCMeta):
     """
@@ -9,3 +8,6 @@ class ICase(metaclass=abc.ABCMeta):
     @classmethod
     def __subclasshook__(cls, subclass):
         return (hasattr(subclass, 'cid'))
+
+    @property
+    def cid(self): raise NotImplementedError()

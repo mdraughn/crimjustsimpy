@@ -1,22 +1,23 @@
 import collections.abc as abc
-import typing as typ
-from typing import Iterator
+from typing import Iterator, Callable
 
 from . import SimpleRandomCase
+from ...trial import CaseFactoryBase
 
-class SimpleRandomCaseFactory(trial.CaseFactoryBase):
+
+class SimpleRandomCaseFactory(CaseFactoryBase):
     """
     Creates cases on demand, using the conviction probability generator.
     """
-    _convict_gen: Iterator[float]
+    _convict_gen: Callable[[], float]
 
-    def __init__(self, *, convict_gen: typ.Iterator[float]):
+    def __init__(self, *, convict_gen: Callable[[], float]):
         super().__init__(self.__class__)
-        assert isinstance(convict_gen, abc.Iterator)
+        assert isinstance(convict_gen, abc.Callable)
         self._convict_gen = convict_gen
 
     def gen_case(self) -> SimpleRandomCase:
-        cid = trial.gen_id()
-        prob_convict = next(self._convict_gen)
+        cid = self.gen()
+        prob_convict = self._convict_gen()
         return SimpleRandomCase(cid=cid, prob_convict=prob_convict, sentence_range=(30, 60))
 

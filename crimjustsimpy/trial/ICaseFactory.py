@@ -1,6 +1,6 @@
 import abc
 
-from crimjustsimpy.trial import ICase
+from . import ICase
 
 
 class ICaseFactory(abc.ABC):

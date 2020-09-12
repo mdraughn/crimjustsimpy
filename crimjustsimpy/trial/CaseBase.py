@@ -1,10 +1,6 @@
-import abc
-from typing import Callable
-from enum import Enum
+from . import ICase
 
-from crimjustsimpy.trial import ICase
-
-class CaseBase():
+class CaseBase(ICase):
     __cid: int
 
     def __init__(self, cid: int):

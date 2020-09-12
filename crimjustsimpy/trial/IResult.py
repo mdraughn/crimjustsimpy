@@ -1,8 +1,4 @@
 import abc
-from typing import Callable
-from enum import Enum
-
-from crimjustsimpy.trial import Verdict
 
 
 class IResult(metaclass=abc.ABCMeta):
@@ -14,4 +10,8 @@ class IResult(metaclass=abc.ABCMeta):
         return (hasattr(subclass, 'verdict') and
                 hasattr(subclass, 'sentence')) or NotImplemented
 
+    @property
+    def verdict(self): raise NotImplementedError()
 
+    @property
+    def sentence(self): raise NotImplementedError()

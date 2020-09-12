@@ -1,7 +1,6 @@
 from typing import Callable
-
-from crimjustsimpy.core import IdGenerator
-from crimjustsimpy.trial import ICaseFactory, ICase
+from ..core import IdGenerator
+from . import ICaseFactory, ICase
 
 
 class CaseFactoryBase(ICaseFactory):

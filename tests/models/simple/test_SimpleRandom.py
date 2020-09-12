@@ -1,9 +1,8 @@
 from unittest import TestCase
 
-from crimjustsimpy.rangen.RandomChoice import Choice
-from crimjustsimpy.models.random.SimpleRandomCase import SimpleRandomCase
-from crimjustsimpy.models.random.SimpleRandomCaseFactory import SimpleRandomCaseFactory
-from crimjustsimpy.trial.trial import ICase, ICaseFactory
+from crimjustsimpy.models.simple import SimpleRandomCase, SimpleRandomCaseFactory, SimpleRandomTrialEngine
+from crimjustsimpy.rangen import Choice
+from crimjustsimpy.trial import ICase, ICaseFactory, ITrialEngine
 
 
 class TestSimpleRandomCase(TestCase):
@@ -35,3 +34,15 @@ class TestSimpleRandomCaseFactory(TestCase):
         self.assertIsInstance(case,SimpleRandomCase)
         self.assertGreater(case.cid, 0)
         self.assertEqual(case.prob_convict,0.123,"Case probability not initialized correctly.")
+
+class TestSimpleRandomTrialEngine(TestCase):
+    def test_interface(self):
+        self.assertTrue(issubclass(SimpleRandomTrialEngine,ITrialEngine),
+                        "Trial Engine classes must implement ITrialEngine")
+        trial = SimpleRandomTrialEngine()
+        self.assertIsInstance(trial, ITrialEngine,"Trial Engine classes must implement ITrialEngine")
+
+    def test_trial(self):
+        case = SimpleRandomCase(cid=1, prob_convict=0.5, sentence_range=(5,10))
+        trial = SimpleRandomTrialEngine()
+        result = trial.try_case(case)
