@@ -56,7 +56,7 @@ class SimEngine:
         # Trials for remaining cases.
         for case in docket.cases:
             if not case.plead:
-                self.config.trial.try_case(case)
+                self.config.engine.try_case(case)
                 case.time_tried = self.env.now
 
     def to_cases_data_frame(self):

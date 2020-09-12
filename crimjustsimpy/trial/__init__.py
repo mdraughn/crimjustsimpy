@@ -6,3 +6,4 @@ from .ResultBase import ResultBase
 from .CaseBase import CaseBase
 from .CaseFactoryBase import CaseFactoryBase
 from .ITrialEngine import ITrialEngine
+from .Trial import GenResults
