@@ -3,8 +3,6 @@ import typing as typ
 from typing import Iterator
 
 from . import SimpleRandomCase
-from crimjustsimpy.trial import trial
-
 
 class SimpleRandomCaseFactory(trial.CaseFactoryBase):
     """
@@ -16,7 +14,6 @@ class SimpleRandomCaseFactory(trial.CaseFactoryBase):
         super().__init__(self.__class__)
         assert isinstance(convict_gen, abc.Iterator)
         self._convict_gen = convict_gen
-
 
     def gen_case(self) -> SimpleRandomCase:
         cid = trial.gen_id()
