@@ -15,9 +15,10 @@ class SimpleRandomTrialEngine(ITrialEngine):
 
         # Random trial outcome based on probability of a conviction.
         if draw < case.prob_convict:
-            sentence_span = case.sentence_max - case.sentence_min
+            # sentence_span = case.sentence_max - case.sentence_min
             # sentence = case.sentence_min + (uniform.rvs() * sentence_span)
-            sentence = case.sentence_min + (random.random() * sentence_span)
+            # sentence = case.sentence_min + (random.random() * sentence_span)
+            sentence = random.randint(case.sentence_min, case.sentence_max)
             result = ResultBase(Verdict.guilty, sentence)
         else:
             result = ResultBase(Verdict.not_guilty, 0)

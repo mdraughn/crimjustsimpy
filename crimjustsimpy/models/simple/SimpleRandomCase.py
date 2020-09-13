@@ -8,8 +8,8 @@ class SimpleRandomCase(CaseBase):
     Represents a case working its way through the justice system
     """
     prob_convict: float
-    sentence_min: float
-    sentence_max: float
+    sentence_min: int
+    sentence_max: int
 
     def __init__(self, cid: int, *, prob_convict: float, sentence_range: Tuple[float, float]):
         super().__init__(cid)

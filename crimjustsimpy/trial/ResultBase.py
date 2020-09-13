@@ -6,14 +6,14 @@ class ResultBase(IResult):
     Represents a case working its way through the justice system
     """
     __verdict: Verdict
-    __sentence: float
+    __sentence: int
 
     @classmethod
     def __subclasshook__(cls, subclass):
         return (hasattr(subclass, 'verdict') and
                 hasattr(subclass, 'sentence')) or NotImplemented
 
-    def __init__(self, verdict: Verdict, sentence: float):
+    def __init__(self, verdict: Verdict, sentence: int):
         self.__verdict = verdict
         self.__sentence = sentence
 
