@@ -1,6 +1,7 @@
 from typing import Iterable
 
 from crimjustsimpy.trial import ITrialEngine, ICase, IResult, ResultSummary, Verdict
+from crimjustsimpy.trial import TrialEstimatorBase
 
 
 def GenResults(trial_engine: ITrialEngine, case: ICase, n: int) -> Iterable[IResult]:
@@ -11,6 +12,14 @@ def GenResults(trial_engine: ITrialEngine, case: ICase, n: int) -> Iterable[IRes
     return (trial_engine.try_case(case) for i in range(n))
 
 def SummarizeResults(trial_engine: ITrialEngine, case: ICase, n: int) -> ResultSummary:
+    assert isinstance(trial_engine,ITrialEngine)
+    assert isinstance(case,ICase)
+
+    estimator = TrialEstimatorBase(trial_engine, n)
+    result = estimator.estimate(case)
+    return result
+
+def SummarizeResults_OLD(trial_engine: ITrialEngine, case: ICase, n: int) -> ResultSummary:
     assert isinstance(trial_engine,ITrialEngine)
     assert isinstance(case,ICase)
 

@@ -3,7 +3,7 @@ import abc
 from . import ICase
 
 
-class ICaseFactory(abc.ABC):
+class ICaseFactory(metaclass=abc.ABCMeta):
     """
     Creates cases on demand.
     """

@@ -12,5 +12,6 @@ class ITrialEngine(metaclass=abc.ABCMeta):
         return (hasattr(subclass, 'try_case') and
             callable(subclass.try_case)) or NotImplemented
 
+    @abc.abstractmethod
     def try_case(self, case: ICase) -> IResult:
         raise NotImplementedError()
