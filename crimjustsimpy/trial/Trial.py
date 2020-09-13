@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from crimjustsimpy.trial import ITrialEngine, ICase, IResult, ResultSummary, Verdict
+from crimjustsimpy.trial import ITrialEngine, ICase, IResult, ResultSummary, Verdict, CachingTrialEstimator
 from crimjustsimpy.trial import TrialEstimatorBase
 
 
@@ -15,7 +15,7 @@ def SummarizeResults(trial_engine: ITrialEngine, case: ICase, n: int) -> ResultS
     assert isinstance(trial_engine,ITrialEngine)
     assert isinstance(case,ICase)
 
-    estimator = TrialEstimatorBase(trial_engine, n)
+    estimator = CachingTrialEstimator(TrialEstimatorBase(trial_engine, n))
     result = estimator.estimate(case)
     return result
 

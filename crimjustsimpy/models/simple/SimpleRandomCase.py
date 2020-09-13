@@ -19,3 +19,8 @@ class SimpleRandomCase(CaseBase):
 
         self.prob_convict = prob_convict
         self.sentence_min, self.sentence_max = sentence_range
+
+    @property
+    def key(self) -> str:
+        """Generate a key for indexing."""
+        return f"{self.prob_convict}:{self.sentence_min}:{self.sentence_max}"

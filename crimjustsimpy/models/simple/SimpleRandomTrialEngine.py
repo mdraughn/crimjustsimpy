@@ -24,3 +24,8 @@ class SimpleRandomTrialEngine(ITrialEngine):
             result = ResultBase(Verdict.not_guilty, 0)
 
         return result
+
+    @property
+    def key(self) -> str:
+        """Generate a key for indexing."""
+        return self.__class__.__name__

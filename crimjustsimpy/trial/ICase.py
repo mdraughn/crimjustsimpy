@@ -7,7 +7,13 @@ class ICase(metaclass=abc.ABCMeta):
     """
     @classmethod
     def __subclasshook__(cls, subclass):
-        return (hasattr(subclass, 'cid'))
+        return (hasattr(subclass, 'cid') and
+                hasattr(subclass, 'key'))
 
     @property
     def cid(self): raise NotImplementedError()
+
+    @property
+    def key(self) -> str:
+        """Generate a key for indexing."""
+        raise NotImplementedError

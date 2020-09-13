@@ -13,7 +13,15 @@ class TrialEstimatorBase(ITrialEstimator):
         self.engine = engine
         self.reps = reps
 
+    @property
+    def key(self) -> str:
+        """Generate a key for indexing."""
+        return self.engine.key
+
     def estimate(self, case: ICase) -> ResultSummary:
+        return self.simulate(case)
+
+    def simulate(self, case: ICase) -> ResultSummary:
         """Estimate the outcome of a case."""
 
         guilty_count = 0

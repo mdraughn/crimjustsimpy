@@ -1,13 +1,21 @@
 from cProfile import Profile
 from pstats import Stats
 from crimjustsimpy.models.simple import SimpleRandomCase, SimpleRandomTrialEngine
-from crimjustsimpy.trial import GenResults, SummarizeResults, ResultSummary
+from crimjustsimpy.trial import GenResults, SummarizeResults, ResultSummary, TrialEstimatorBase, CachingTrialEstimator
 
-case = SimpleRandomCase(cid=1, prob_convict=0.5, sentence_range=(5, 10))
-engine = SimpleRandomTrialEngine()
+def test():
+    engine = SimpleRandomTrialEngine()
+    estimator = CachingTrialEstimator(TrialEstimatorBase(engine, 1000000))
+
+    case = SimpleRandomCase(cid=1, prob_convict=0.5, sentence_range=(5, 10))
+    result = estimator.estimate(case)
+    result = estimator.estimate(case)
+    result = estimator.estimate(case)
+    result = estimator.estimate(case)
+    return result
 
 profiler = Profile()
-summary:ResultSummary = profiler.runcall(lambda: SummarizeResults(engine, case, 10000))
+summary:ResultSummary = profiler.runcall(test)
 stats = Stats(profiler)
 stats.strip_dirs()
 stats.sort_stats('cumulative')
